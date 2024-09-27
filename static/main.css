@@ -1,0 +1,205 @@
+@font-face {
+    font-family: 'PTSans';
+    src: url('../fonts/PTSansNarrow-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PTSansBold';
+    src: url('../fonts/PTSansNarrow-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PTSansMono';
+    src: url('../fonts/PTMono-Regular.ttf') format('truetype');
+}
+
+html {
+    background-color: #000000;
+    line-height: 1;
+    font-family: Inter, sans-serif;
+    font-size: 20pt;
+    /* margin: 4pt; */
+    padding: 4pt;
+}
+
+/* events */
+
+#container {
+}
+
+#busCard {
+    width: 50%;
+    background-color: black;
+}
+
+#eventCard {
+    width: 50%;
+}
+
+.outer {
+    width: 100%;
+    height: 100%;
+    /* margin: 10pt; */
+    padding: 0;
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.inner {
+    flex: 1;
+    /* display: flex; */
+    display: inline-block;
+    flex-direction: column;
+    margin: 4pt;
+    /* border-radius: 20px; */
+    background-color: #111111;
+    color: #FFFFFF;
+    /* padding: 4pt; */
+    /* box-shadow: 10px 10px; */
+    border-radius: 8px;
+    /* border-top: auto; */
+    /* border-bottom: auto; */
+    /* align-items: space-evenly; /1* Center items vertically *1/ */
+}
+
+img {
+    justify-content: center;
+    align-items: center;
+    max-height:3em;
+    /* flex: 1; */
+    background-color: white;
+    border-radius: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.event {
+    display: flex;
+    font-family: "PTSansBold", serif;
+    background-color: #222222;
+    margin: 4pt;
+    padding: 4pt;
+    border-radius: 8px;
+    line-height: 1.3em;
+}
+
+.eventInnerBox {
+    min-height: 1em;
+}
+
+.eventOuterBox {
+}
+
+#eventInfo {
+    flex: 1;
+}
+
+#eventHeader {
+    margin: auto;
+    padding: 0;
+}
+
+#eventTitle {
+}
+
+#eventCapacity {
+}
+
+.eventNotFull {
+    color: #81fc5f;
+}
+
+.eventFull {
+    /* color: red; */
+}
+
+.eventEmpty {
+    color: #rgba(0, 0, 0, 0.5);
+    /* color: yellow; */
+    opacity: 0;
+}
+
+.cancelled {
+    color: #fc5f5f;
+}
+
+#eventTime {
+}
+
+#eventCapacity {
+    /* min-height: 1em; */
+}
+
+/* bus departures */
+
+.busStop {
+    /* background-color: #333333; */
+    background-color: black;
+    margin: 4pt;
+    padding: 4pt;
+}
+
+.busStopName {
+    font-family: ubuntu mono;
+    font-weight: bold;
+    font-size: 20pt;
+    justify-content: center;
+    border-bottom: white 1pt solid;
+    /* text-align: center; */
+    /* margin: 4pt; */
+    /* margin-bottom: 0; */
+    margin: 0;
+    margin-bottom: 4pt;
+    /* border-bottom: white 1pt solid; */
+    color: yellow;
+}
+
+.busDeparture {
+    display: flex;
+    font-family: ubuntu mono;
+    /* background-color: #555555; */
+    /* border-top: white 1pt solid; */
+    /* border-top: white 1pt #ffffff; */
+    background-color: #050505;
+}
+
+.busDepartureAlt {
+    background-color: #080808;
+}
+
+#busDepartureFirst {
+    font-weight: bold;
+}
+
+#busDepartureTime {
+    margin-left: auto;
+}
+
+#busLineNumber {
+    background-color: #a3af00;
+    color: #ffffff;
+    min-width: 3em;
+    /* height: 1.6em; */
+    font-size: 16pt;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#busRoute {
+    flex: 1;
+}
+
+.bus {
+    color: cyan;
+}
+
+.busInnerBox {
+    /* border: solid 2px black; */
+    margin: 4px;
+}
+
