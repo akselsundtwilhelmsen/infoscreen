@@ -1,9 +1,8 @@
-from flask import Flask, redirect, url_for, request, render_template
-from flask_socketio import SocketIO, emit
+from flask import Flask, render_template
+from flask_socketio import SocketIO
 from datetime import datetime
 from time import sleep
 import threading
-# import graphene
 import requests
 import json
 

@@ -38,6 +38,7 @@ async function eventUpdateDOM() {
         const infoDiv = document.createElement("div");
         infoDiv.id = "eventInfo"
         infoDiv.className = outerClass;
+
         // title
         const eventTitle = document.createElement("div");
         eventTitle.id = "eventTitle";
@@ -47,22 +48,26 @@ async function eventUpdateDOM() {
         if (value.title.toLowerCase().includes("[avlyst]")) {
             eventTitle.classList.add("cancelled");
         }
+
         // capacity
         const eventCapacity = document.createElement("div");
         eventCapacity.id = "eventCapacity";
         eventCapacity.className = innerClass;
+        eventCapacity.innerText = value.capacity;
+        eventCapacity.innerText = value.capacity;
         let capacity = value.capacity.split('/');
         if (capacity[1] == '0') {
             eventCapacity.classList.add("eventEmpty");
+        	eventCapacity.innerText = "0/x";
         }
-        else if (capacity[0] = capacity[1]) {
-            eventCapacity.classList.add("eventNotFull");
-        }
-        else {
+        else if (capacity[0] == capacity[1]) {
             eventCapacity.classList.add("eventFull");
         }
-        eventCapacity.innerText = value.capacity;
+        else {
+            eventCapacity.classList.add("eventNotFull");
+        }
         infoDiv.appendChild(eventCapacity);
+
         // time and date
         const eventTime = document.createElement("div");
         eventTime.id = "eventTime";

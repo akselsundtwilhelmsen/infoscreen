@@ -110,16 +110,16 @@ img {
 }
 
 .eventNotFull {
-    color: #81fc5f;
+    color: #46CB18;
 }
 
 .eventFull {
-    /* color: red; */
+     color: red; 
 }
 
 .eventEmpty {
-    color: #rgba(0, 0, 0, 0.5);
-    /* color: yellow; */
+    /*color: #rgba(0, 0, 0, 0.5);*/
+    color: #777777; 
     opacity: 0;
 }
 
