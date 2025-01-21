@@ -9,6 +9,7 @@ import json
 app = Flask(__name__, static_folder="/")
 socketio = SocketIO(app)
 
+busesPerStop = 10 # to be able to remove buses that can't be reached
 currentBusTimes = []
 busUpdateInterval = 10
 
@@ -40,10 +41,10 @@ def getDateRange(): # TODO: rydd opp i denne
     return f"?{date_after}&{date_before}&page_size=30"
 
 def busFetch():
-    busesPerStop = 10
     stopNumbers = [44085, 41620, 42029] # Gløshaugen, Hesthagen, Høgskoleringen
     # order matters
 
+    global busesPerStop
     global currentBusTimes 
     while True:
         writeData = []
@@ -84,11 +85,12 @@ def formatBusResponse(response: dict, busesPerStop) -> list:
     return output
 
 def queryATB(stopNumber: int) -> dict:
+    global busesPerStop
     url = "https://api.entur.io/journey-planner/v3/graphql"
     date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S") # TODO tidssonefeil???
     query = """
         { stopPlace(id: "NSR:StopPlace:"""+str(stopNumber)+"""\") {
-            estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100, numberOfDepartures: 16) {     
+            estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100, numberOfDepartures: """+str(busesPerStop)+""") {     
               expectedDepartureTime
               destinationDisplay {
                 frontText
