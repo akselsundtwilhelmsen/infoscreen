@@ -20,7 +20,6 @@ html {
     font-size: 20pt;
     /* margin: 4pt; */
     padding: 4pt;
-	background-color: #000000;
 }
 
 /* events */
@@ -29,13 +28,18 @@ html {
 }
 
 #busCard {
+    width: 50%;
+    background-color: black;
 }
 
 #eventCard {
+    width: 50%;
 }
 
 .outer {
     width: 100%;
+    height: 100%;
+    /* margin: 10pt; */
     padding: 0;
     position: absolute;
     display: flex;
@@ -43,40 +47,44 @@ html {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-	background-color: #0f0fff;
 }
 
 .inner {
     flex: 1;
+    /* display: flex; */
+    display: inline-block;
+    flex-direction: column;
     margin: 4pt;
-	background-color: 000000;
+    /* border-radius: 20px; */
+    background-color: #111111;
     color: #FFFFFF;
-	background-color: #fff000;
-	justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
-}
-
-.event {
-    display: flex;
-    font-family: "PTSansBold", serif;
-	background-color: #511730;
-    margin: 4pt;
-    padding: 0pt;
-    line-height: 1.3em;
-	height: 4em;
-    border-radius: 14px;
+    /* padding: 4pt; */
+    /* box-shadow: 10px 10px; */
+    border-radius: 8px;
+    /* border-top: auto; */
+    /* border-bottom: auto; */
+    /* align-items: space-evenly; /1* Center items vertically *1/ */
 }
 
 img {
     justify-content: center;
     align-items: center;
-	height: 3em;
-     flex: 1; 
+    max-height:3em;
+    /* flex: 1; */
     background-color: white;
-	height: 4em;
+    border-radius: 8px;
     margin: 0;
     padding: 0;
-    border-radius: 14px;
+}
+
+.event {
+    display: flex;
+    font-family: "PTSansBold", serif;
+    background-color: #222222;
+    margin: 4pt;
+    padding: 4pt;
+    border-radius: 8px;
+    line-height: 1.3em;
 }
 
 .eventInnerBox {
@@ -106,8 +114,7 @@ img {
 }
 
 .eventFull {
-    color: red; 
-	opacity: 0;
+     color: red; 
 }
 
 .eventEmpty {
