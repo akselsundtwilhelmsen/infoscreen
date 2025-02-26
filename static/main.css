@@ -23,19 +23,9 @@ html {
 	background-color: #000000;
 }
 
-/* events */
-
-#container {
-}
-
-#busCard {
-}
-
-#eventCard {
-}
-
 .outer {
     width: 100%;
+	height: 100%;
     padding: 0;
     position: absolute;
     display: flex;
@@ -43,17 +33,30 @@ html {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-	background-color: #0f0fff;
 }
 
-.inner {
-    flex: 1;
+
+/* events */
+
+#eventCard {
+	flex: 1;
+}
+
+#abakus {
+	flex: 1;
+	display: flex;
+	justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+}
+
+.abakusInner {
+    /*flex: 1;*/
     margin: 4pt;
-	background-color: 000000;
     color: #FFFFFF;
 	background-color: #fff000;
 	justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
+	font-size: 8pt;
 }
 
 .event {
@@ -127,45 +130,72 @@ img {
     /* min-height: 1em; */
 }
 
+
 /* bus departures */
 
+#leftColumn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#dateTime {
+	background-color: #2b353a;
+	width: 100%;
+	text-align: center;
+	border-radius: 8px;
+	color: white;
+}
+
+#atb {
+	width: 600px;
+	/*height: 100%;*/
+	display: flex;
+    /*align-items: center;*/
+	justify-content: center;
+	color: white;
+}
+
+.busCard {
+	flex-grow: 1;
+	font-size: 10pt;
+}
+
 .busStop {
-    /* background-color: #333333; */
-    background-color: black;
-    margin: 4pt;
-    padding: 4pt;
+    background-color: #2b353a;
+	margin: 2px;
+	border-radius: 8px;
 }
 
 .busStopName {
     font-family: ubuntu mono;
     font-weight: bold;
-    font-size: 20pt;
     justify-content: center;
-    border-bottom: white 1pt solid;
     /* text-align: center; */
     /* margin: 4pt; */
     /* margin-bottom: 0; */
     margin: 0;
     margin-bottom: 4pt;
     /* border-bottom: white 1pt solid; */
-    color: yellow;
+    /*color: yellow;*/
+}
+
+#busDepartureFirst {
+    font-weight: bold;
 }
 
 .busDeparture {
     display: flex;
     font-family: ubuntu mono;
+	border-top: 1px solid #000000;
+	align-items: center;
     /* background-color: #555555; */
     /* border-top: white 1pt solid; */
     /* border-top: white 1pt #ffffff; */
-    background-color: #050505;
 }
 
 .busDepartureAlt {
-    background-color: #080808;
-}
-
-#busDepartureFirst {
-    font-weight: bold;
 }
 
 #busDepartureTime {
@@ -173,14 +203,27 @@ img {
 }
 
 #busLineNumber {
-    background-color: #a3af00;
-    color: #ffffff;
+    background-color: #94c20a;
+    color: #000000;
     min-width: 3em;
-    /* height: 1.6em; */
-    font-size: 16pt;
-    text-align: center;
-    border-radius: 8px;
+	font-size: 12;
+    border-radius: 4px;
+	height: 1.2em;
     font-weight: bold;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+.busIcon {
+	flex: 1;
+	flex-grow: 0;
+	background-color: #00000000;
+	height: 1em;
+	padding-right: 3px;	
+	border-radius: 0px;
+	height: 0.6em;
 }
 
 #busRoute {

@@ -9,7 +9,7 @@ import json
 app = Flask(__name__, static_folder="/")
 socketio = SocketIO(app)
 
-busesPerStop = 10 # to be able to remove buses that can't be reached
+busesPerStop = 12 # to be able to remove buses that can't be reached
 currentBusTimes = []
 busUpdateInterval = 10
 

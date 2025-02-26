@@ -8,9 +8,9 @@ async function fetchBusData() {
         });
 }
 
-async function busUpdateDOM() {
+async function busUpdateDOM(arg) {
     const busData = await fetchBusData();
-    const busCard = document.getElementById("busCard");
+    const busCard = document.getElementById(arg);
 
     // clear screen
     while (busCard.firstChild) {
@@ -44,9 +44,9 @@ async function busUpdateDOM() {
             const lineNumber = document.createElement("div");
             lineNumber.id = "busLineNumber";
             lineNumber.className = "busInnerBox";
-            // lineNumber.innerHTML = "<img src='static/icons/busIcon.svg'></img>";
+            lineNumber.innerHTML = "<img src='static/icons/bus.png' class='busIcon'></img>";
             // lineNumber.innerHTML =+ `<p>${busData[a][b]["lineNo"]}</p>`
-            lineNumber.innerHTML = busData[a][b]["lineNo"];
+            lineNumber.innerHTML += busData[a][b]["lineNo"];
             departure.appendChild(lineNumber);
 
             // route 
@@ -69,5 +69,8 @@ async function busUpdateDOM() {
     }
 }
 
-busUpdateDOM();
+busUpdateDOM("busCard1");
+setInterval(busUpdateDOM, 10000); // 1000->15000
+
+busUpdateDOM("busCard2");
 setInterval(busUpdateDOM, 10000); // 1000->15000
