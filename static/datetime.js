@@ -20,37 +20,17 @@ async function dateTimeUpdate(dateTimeDiv) {
 
 	const hours = pad(now.getHours());
 	const minutes = pad(now.getMinutes());
-	const dayWord = now.toLocaleString('no', { weekday: 'long' });
-	const dayNumber = pad(now.getDate());
-	const month = pad(now.getMonth() + 1);
-	const year = now.getFullYear();
-
 
     // clear screen
     while (dateTimeDiv.firstChild) {
         dateTimeDiv.removeChild(dateTimeDiv.firstChild);
     }
 
-	// abakule
-	const abakusLogo = document.createElement("div");
-	abakusLogo.className = "abakusLogo";
-    abakusLogo.innerHTML = "<img src='static/icons/abakule.png' class='abakule'></img>";
-	dateTimeDiv.appendChild(abakusLogo);
-
 	// time
 	const time = document.createElement("h1")
 	time.className = "time";
 	time.innerText = `${hours}:${minutes}`
 	dateTimeDiv.appendChild(time);
-
-	// date
-	const date = document.createElement("div")
-	date.classList.add("date", "subtle");
-	//date.innerText = `${dayWord} ${dayNumber}/${month}/${year}`
-	date.innerText = `${dayNumber}/${month}/${year}`
-	dateTimeDiv.appendChild(date);
-
-
 }
 
 // start program

@@ -142,29 +142,12 @@ img {
 /* date and time banner */
 
 #dateTime {
-    display: flex;
 	justify-content: space-between;
     font-family: ubuntu mono;
 	width: 100%;
 	align-items: center;
 	position: relative;
-}
 
-.abakule {
-	background-color: #00000000;
-	height: 3em;
-	margin: 1em;
-}
-
-.time {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 64pt;
-}
-
-.date {
-	margin: 1em;
 }
 
 
