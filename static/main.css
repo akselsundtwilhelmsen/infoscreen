@@ -211,12 +211,18 @@ img {
     font-family: ubuntu mono;
 	border-top: 1px solid #000000;
 	align-items: center;
+	height: 2em;
     /* background-color: #555555; */
     /* border-top: white 1pt solid; */
     /* border-top: white 1pt #ffffff; */
 }
 
-.busDepartureAlt {
+.busErrorMessage {
+	margin: auto;
+
+	color: #AAAAAA;
+	font-style: italic;
+	text-align: center;
 }
 
 #busDepartureTime {
