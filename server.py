@@ -13,7 +13,7 @@ app = Flask(__name__, static_folder="/")
 socketio = SocketIO(app)
 
 busesPerStop = 10 # to be able to remove buses that can't be reached
-currentBusTimes = []
+currentBusData = []
 busUpdateInterval = 10
 
 currentEventData = []
@@ -30,11 +30,14 @@ def webpage():
 
 @app.route("/getBusData")
 def getBusData():
-    return currentBusTimes
+    return currentBusData
 
 @app.route("/getEventData")
 def getEventData():
     return currentEventData
+
+
+# helper function(s)
 
 def getDateRange() -> str: # TODO: rydd opp i denne
     current_date = datetime.now()
@@ -56,20 +59,23 @@ def busFetch() -> None:
                    42029] # Høgskoleringen
 
     global busesPerStop
-    global currentBusTimes 
+    global currentBusData 
     global busUpdateInterval
     while True:
         writeData = []
         for num in stopNumbers:
-            currentStop = formatBusResponse(queryATB(num), busesPerStop)
-            writeData.append(currentStop)
-        currentBusTimes = json.dumps(writeData)
+            formattedBusResponse = formatBusResponse(queryATB(num), busesPerStop)
+            writeData.append(formattedBusResponse)
+
+        if writeData != [[], [], []]: # error handling
+            currentBusData = json.dumps(writeData) # update bus data
+        else:
+            currentBusData = []
         sleep(busUpdateInterval)
 
 def formatBusResponse(response: dict, busesPerStop: int) -> list:
     # error handling
     if response == {}:
-        print("error caught")
         return []
 
     output = []
@@ -109,7 +115,7 @@ def formatBusResponse(response: dict, busesPerStop: int) -> list:
 def queryATB(stopNumber: int) -> dict:
     global busesPerStop
     url = "https://api.entur.io/journey-planner/v3/graphql"
-    date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S") # TODO tidssonefeil???
+    date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     query = """
         { stopPlace(id: "NSR:StopPlace:"""+str(stopNumber)+"""\") {
             estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100, numberOfDepartures: """+str(busesPerStop)+""") {     
@@ -130,12 +136,30 @@ def queryATB(stopNumber: int) -> dict:
           }
         }
         """
+    # query = """
+    #         { quay(id: "NSR:Quay:"""+str(stopNumber)+"""\") {
+    #             estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100,
+    #                            numberOfDepartures: """+str(busesPerStop)+""") {
+    #               expectedDepartureTime
+    #               destinationDisplay {
+    #                 frontText
+    #               }
+    #               serviceJourney {
+    #                 journeyPattern {
+    #                   line {
+    #                     id
+    #                     name
+    #                     transportMode
+    #                   }
+    #                 }
+    #               }
+    #             }
+    #           }
+    #         }
+    #         """
     data = {'query': query}
     try:
         response = requests.post(url, json=data)
-        print("===========================================")
-        print(" atb response: ")
-        print("===========================================")
         print(response.json())
         return response.json()
     except Exception as e:
@@ -150,13 +174,15 @@ def eventFetch() -> None:
     global currentEventData
     while True:
         writeData = formatEventResponse(queryWebkom())
-        currentEventData = json.dumps(writeData)
+        if writeData != []: # error handling
+            currentEventData = json.dumps(writeData) # update event data
+        else:
+            currentEventData = []
         sleep(eventUpdateInterval)
 
 def formatEventResponse(response: dict) -> list:
     # error handling
     if response == {}:
-        print("error caught")
         return []
 
     global months
@@ -192,12 +218,9 @@ def queryWebkom() -> dict:
     try:
         response = requests.get(url)
         response.raise_for_status()
-        # print("===========================================")
-        # print(" webkom response: ")
-        # print("===========================================")
-        # print(response.json())
         return response.json()
     except Exception as e:
+        print(f"error: {e}")
         return {}
 
 

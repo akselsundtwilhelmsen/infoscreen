@@ -1,5 +1,8 @@
+// global variables
+var updateIntervalMS = 10000;
 var busStopNames = ["Gløshaugen", "Hesthagen", "Høgskoleringen"];
 
+// get bus data from webserver
 async function fetchBusData() {
     return fetch('/getBusData')
         .then(response => response.text())
@@ -8,6 +11,7 @@ async function fetchBusData() {
         });
 }
 
+// populate the DOM with bus data
 async function busUpdateDOM(arg) {
     const busData = await fetchBusData();
     const busCard = document.getElementById(arg);
@@ -44,14 +48,19 @@ async function busUpdateDOM(arg) {
 
         // bus departures
         for (let b = 0; b < busData[a].length; b++) {
+			//console.log(busData);
+			//if (busData) {
+			//	continue;
+			//}
+
             const departure = document.createElement("div");
             departure.className = "busDeparture";
-            if (b % 2 == 0) {
-                departure.classList.add("busDepartureAlt")
-            }
-            if (b == 0) {
-                departure.id = ("busDepartureFirst");
-            }
+            //if (b % 2 == 0) {
+            //    departure.classList.add("busDepartureAlt")
+            //}
+            //if (b == 0) {
+            //    departure.id = ("busDepartureFirst");
+            //}
 
             // line number 
             const lineNumber = document.createElement("div");
@@ -85,8 +94,10 @@ async function busUpdateDOM(arg) {
     }
 }
 
-busUpdateDOM("busCard1");
-setInterval(busUpdateDOM, 10000); // 1000->15000
-
-busUpdateDOM("busCard2");
-setInterval(busUpdateDOM, 10000); // 1000->15000
+// start program
+window.onload = () => {
+    busUpdateDOM("busCard1");
+    busUpdateDOM("busCard2");
+    setInterval(() => busUpdateDOM("busCard1"), updateIntervalMS);
+    setInterval(() => busUpdateDOM("busCard2"), updateIntervalMS);
+};
