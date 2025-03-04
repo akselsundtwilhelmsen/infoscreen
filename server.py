@@ -54,9 +54,15 @@ def getDateRange() -> str: # TODO: rydd opp i denne
 
 def busFetch() -> None:
     # order matters!
-    stopNumbers = [44085, # Gløshaugen
-                   41620, # Hesthagen
-                   42029] # Høgskoleringen
+    # stopNumbers = [44085, # Gløshaugen
+    #                41620, # Hesthagen
+    #                42029] # Høgskoleringen
+    stopNumbers = [75708,  # Gløshaugen nord
+                   71204,  # Hesthagen nord
+                   71939,  # Høgskoleringen nord
+                   75707,  # Gløshaugen sør
+                   102719, # Hesthagen sør
+                   71940]  # Høgskoleringen sør
 
     global busesPerStop
     global currentBusData 
@@ -80,7 +86,7 @@ def formatBusResponse(response: dict, busesPerStop: int) -> list:
 
     output = []
     for i in range(busesPerStop):
-        data = response["data"]["stopPlace"]["estimatedCalls"][i]
+        data = response["data"]["quay"]["estimatedCalls"][i]
 
         time = data["expectedDepartureTime"].split("T")[1].split("+")[0].split(":")[:2]
         now = datetime.now()
@@ -116,47 +122,47 @@ def queryATB(stopNumber: int) -> dict:
     global busesPerStop
     url = "https://api.entur.io/journey-planner/v3/graphql"
     date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-    query = """
-        { stopPlace(id: "NSR:StopPlace:"""+str(stopNumber)+"""\") {
-            estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100, numberOfDepartures: """+str(busesPerStop)+""") {     
-              expectedDepartureTime
-              destinationDisplay {
-                frontText
-              }
-              serviceJourney {
-                journeyPattern {
-                  line {
-                    id
-                    name
-                    transportMode
-                  }
-                }
-              }
-            }
-          }
-        }
-        """
     # query = """
-    #         { quay(id: "NSR:Quay:"""+str(stopNumber)+"""\") {
-    #             estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100,
-    #                            numberOfDepartures: """+str(busesPerStop)+""") {
-    #               expectedDepartureTime
-    #               destinationDisplay {
-    #                 frontText
-    #               }
-    #               serviceJourney {
-    #                 journeyPattern {
-    #                   line {
-    #                     id
-    #                     name
-    #                     transportMode
-    #                   }
-    #                 }
+    #     { stopPlace(id: "NSR:StopPlace:"""+str(stopNumber)+"""\") {
+    #         estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100, numberOfDepartures: """+str(busesPerStop)+""") {     
+    #           expectedDepartureTime
+    #           destinationDisplay {
+    #             frontText
+    #           }
+    #           serviceJourney {
+    #             journeyPattern {
+    #               line {
+    #                 id
+    #                 name
+    #                 transportMode
     #               }
     #             }
     #           }
     #         }
-    #         """
+    #       }
+    #     }
+    #     """
+    query = """
+            { quay(id: "NSR:Quay:"""+str(stopNumber)+"""\") {
+                estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100,
+                               numberOfDepartures: """+str(busesPerStop)+""") {
+                  expectedDepartureTime
+                  destinationDisplay {
+                    frontText
+                  }
+                  serviceJourney {
+                    journeyPattern {
+                      line {
+                        id
+                        name
+                        transportMode
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            """
     data = {'query': query}
     try:
         response = requests.post(url, json=data)
