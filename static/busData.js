@@ -11,6 +11,7 @@ async function fetchBusData() {
 async function busUpdateDOM(arg) {
     const busData = await fetchBusData();
     const busCard = document.getElementById(arg);
+	//console.log(busCard);
 
     // clear screen
     while (busCard.firstChild) {

@@ -29,12 +29,12 @@ def webpage():
     return render_template("page.html")
 
 @app.route("/getBusData")
-def getBusData() -> list[str]:
-    return list(currentBusTimes)
+def getBusData():
+    return currentBusTimes
 
 @app.route("/getEventData")
-def getEventData() -> list[str]:
-    return list(currentEventData)
+def getEventData():
+    return currentEventData
 
 def getDateRange() -> str: # TODO: rydd opp i denne
     current_date = datetime.now()
@@ -49,7 +49,7 @@ def getDateRange() -> str: # TODO: rydd opp i denne
 
 # event fetching
 
-def busFetch():
+def busFetch() -> None:
     # order matters!
     stopNumbers = [44085, # Gløshaugen
                    41620, # Hesthagen
@@ -66,7 +66,12 @@ def busFetch():
         currentBusTimes = json.dumps(writeData)
         sleep(busUpdateInterval)
 
-def formatBusResponse(response: dict, busesPerStop) -> list:
+def formatBusResponse(response: dict, busesPerStop: int) -> list:
+    # error handling
+    if response == {}:
+        print("error caught")
+        return []
+
     output = []
     for i in range(busesPerStop):
         data = response["data"]["stopPlace"]["estimatedCalls"][i]
@@ -126,13 +131,21 @@ def queryATB(stopNumber: int) -> dict:
         }
         """
     data = {'query': query}
-    response = requests.post(url, json=data)
-    return response.json()
+    try:
+        response = requests.post(url, json=data)
+        print("===========================================")
+        print(" atb response: ")
+        print("===========================================")
+        print(response.json())
+        return response.json()
+    except Exception as e:
+        print(f"error: {e}")
+        return {}
 
 
 # event fetching
 
-def eventFetch():
+def eventFetch() -> None:
     global eventUpdateInterval
     global currentEventData
     while True:
@@ -140,7 +153,12 @@ def eventFetch():
         currentEventData = json.dumps(writeData)
         sleep(eventUpdateInterval)
 
-def formatEventResponse(response):
+def formatEventResponse(response: dict) -> list:
+    # error handling
+    if response == {}:
+        print("error caught")
+        return []
+
     global months
     titleMaxLength = 40
     output = []
@@ -169,16 +187,28 @@ def formatEventResponse(response):
         output.append(currentEvent)
     return output
 
-
-def queryWebkom():
+def queryWebkom() -> dict:
     url = "https://lego.abakus.no/api/v1/events" + getDateRange()
-    response = requests.get(url)
-    return response.json()
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        # print("===========================================")
+        # print(" webkom response: ")
+        # print("===========================================")
+        # print(response.json())
+        return response.json()
+    except Exception as e:
+        return {}
+
+
+# start server
 
 if __name__ == "__main__":
+    # start fetching atb data
     busFetchThread = threading.Thread(target=busFetch)
     busFetchThread.start()
 
+    # start fetching abakus data
     eventFetchThread = threading.Thread(target=eventFetch)
     eventFetchThread.start()
 
