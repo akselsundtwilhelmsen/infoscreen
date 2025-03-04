@@ -6,10 +6,13 @@ import threading
 import requests
 import json
 
+
+# global variables
+
 app = Flask(__name__, static_folder="/")
 socketio = SocketIO(app)
 
-busesPerStop = 12 # to be able to remove buses that can't be reached
+busesPerStop = 10 # to be able to remove buses that can't be reached
 currentBusTimes = []
 busUpdateInterval = 10
 
@@ -18,19 +21,22 @@ eventUpdateInterval = 1
 
 months = ["jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug", "sep", "okt", "nov", "des"]
 
+
+# flask route handling 
+
 @app.route("/", methods=["GET"])
 def webpage():
     return render_template("page.html")
 
 @app.route("/getBusData")
-def getBusData():
-    return currentBusTimes
+def getBusData() -> list[str]:
+    return list(currentBusTimes)
 
 @app.route("/getEventData")
-def getEventData():
-    return currentEventData
+def getEventData() -> list[str]:
+    return list(currentEventData)
 
-def getDateRange(): # TODO: rydd opp i denne
+def getDateRange() -> str: # TODO: rydd opp i denne
     current_date = datetime.now()
     current_year = current_date.year
     current_month = str(current_date.month).zfill(2)
@@ -40,12 +46,18 @@ def getDateRange(): # TODO: rydd opp i denne
     date_before = f"date_before={next_year}-{current_month}-{current_day}"
     return f"?{date_after}&{date_before}&page_size=30"
 
+
+# event fetching
+
 def busFetch():
-    stopNumbers = [44085, 41620, 42029] # Gløshaugen, Hesthagen, Høgskoleringen
-    # order matters
+    # order matters!
+    stopNumbers = [44085, # Gløshaugen
+                   41620, # Hesthagen
+                   42029] # Høgskoleringen
 
     global busesPerStop
     global currentBusTimes 
+    global busUpdateInterval
     while True:
         writeData = []
         for num in stopNumbers:
@@ -80,7 +92,12 @@ def formatBusResponse(response: dict, busesPerStop) -> list:
         busEntry = {}
         busEntry["departureTime"] = departureTime
         busEntry["lineNo"] = lineNumber
-        busEntry["route"] = data["destinationDisplay"]["frontText"]
+        # busEntry["route"] = data["destinationDisplay"]["frontText"]
+        route = data["destinationDisplay"]["frontText"]
+        if len(route) > 24:
+            route = route[0:22] + ".."
+        busEntry["route"] = route
+
         output.append(busEntry)
     return output
 
@@ -111,6 +128,9 @@ def queryATB(stopNumber: int) -> dict:
     data = {'query': query}
     response = requests.post(url, json=data)
     return response.json()
+
+
+# event fetching
 
 def eventFetch():
     global eventUpdateInterval

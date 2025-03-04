@@ -53,21 +53,23 @@ html {
     /*flex: 1;*/
     margin: 4pt;
     color: #FFFFFF;
-	background-color: #fff000;
+	background-color: #23001E;
 	justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
-	font-size: 8pt;
+	font-size: 18pt;
+	border-radius: 14px;
 }
 
 .event {
     display: flex;
     font-family: "PTSansBold", serif;
-	background-color: #511730;
+	background-color: #A4A9AD;
     margin: 4pt;
     padding: 0pt;
     line-height: 1.3em;
 	height: 4em;
     border-radius: 14px;
+	padding: 3px;
 }
 
 img {
@@ -138,6 +140,7 @@ img {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	width: 24em;
 }
 
 #dateTime {
@@ -146,12 +149,14 @@ img {
 	text-align: center;
 	border-radius: 8px;
 	color: white;
+	margin: 2px;
 }
 
 #atb {
-	width: 600px;
+	/*width: 600px;*/
 	/*height: 100%;*/
 	display: flex;
+	width: 100%;
     /*align-items: center;*/
 	justify-content: center;
 	color: white;
@@ -159,26 +164,39 @@ img {
 
 .busCard {
 	flex-grow: 1;
-	font-size: 10pt;
+	font-size: 11pt;
 }
 
 .busStop {
     background-color: #2b353a;
 	margin: 2px;
+	padding: 3px;
 	border-radius: 8px;
 }
 
-.busStopName {
+.busStopHeader{
+	display: flex;
+	align-items: center;
+    justify-content: space-between;
+
     font-family: ubuntu mono;
     font-weight: bold;
-    justify-content: center;
-    /* text-align: center; */
-    /* margin: 4pt; */
-    /* margin-bottom: 0; */
-    margin: 0;
-    margin-bottom: 4pt;
-    /* border-bottom: white 1pt solid; */
-    /*color: yellow;*/
+	height: 2em;
+	align-items: center;
+}
+
+.busStopName, .busStopDirection {
+	flex: 1;
+	margin: 6px;
+}
+
+.busStopName {
+}
+
+.busStopDirection {
+	text-align: right;
+	font-style: italic;
+	color: #AAAAAA;
 }
 
 #busDepartureFirst {
@@ -187,6 +205,9 @@ img {
 
 .busDeparture {
     display: flex;
+
+	margin: 3px;
+
     font-family: ubuntu mono;
 	border-top: 1px solid #000000;
 	align-items: center;
@@ -203,27 +224,39 @@ img {
 }
 
 #busLineNumber {
+	display: flex;
+	align-items: center;
+    justify-content: space-between;
+
     background-color: #94c20a;
     color: #000000;
     min-width: 3em;
-	font-size: 12;
+	font-size: 13pt;
     border-radius: 4px;
 	height: 1.2em;
     font-weight: bold;
-	text-align: center;
-	align-items: center;
-	justify-content: center;
-	display: flex;
 }
 
 .busIcon {
 	flex: 1;
-	flex-grow: 0;
+	width: 40%;
+	/*flex-grow: 0;*/
 	background-color: #00000000;
-	height: 1em;
-	padding-right: 3px;	
+	height: 0.8em;
+	/*padding-right: 3px;	*/
 	border-radius: 0px;
-	height: 0.6em;
+	/*height: 0.6em;*/
+	/*max-width: 50%;*/
+	/* 	margin-left: auto;*/
+	margin: 0.2em;
+
+}
+
+.lineNumber {
+	flex: 1;
+	/*margin-right: auto;*/
+	width: 50%;
+	text-align: center;
 }
 
 #busRoute {

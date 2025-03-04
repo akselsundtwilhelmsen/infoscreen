@@ -23,11 +23,23 @@ async function busUpdateDOM(arg) {
         busStop.className = "busStop";
         busStop.id = busStopNames[a];
 
-        // bus stop label(name)
-        const busStopName = document.createElement("h3");
-        busStopName.className = "busStopName"
-        busStopName.innerText = busStopNames[a];
-        busStop.appendChild(busStopName);
+		// bus stop header 
+        const busStopHeader = document.createElement("div");
+        busStopHeader.className = "busStopHeader"
+
+			// bus stop label(name)
+			const busStopName = document.createElement("h2");
+			busStopName.className = "busStopName"
+			busStopName.innerText = busStopNames[a];
+			busStopHeader.appendChild(busStopName);
+
+			// bus stop direction
+			const busStopDirection = document.createElement("h4");
+			busStopDirection.className = "busStopDirection"
+			busStopDirection.innerText = "retning x"; // TODO fix
+			busStopHeader.appendChild(busStopDirection);
+
+        busStop.appendChild(busStopHeader);
 
         // bus departures
         for (let b = 0; b < busData[a].length; b++) {
@@ -44,9 +56,12 @@ async function busUpdateDOM(arg) {
             const lineNumber = document.createElement("div");
             lineNumber.id = "busLineNumber";
             lineNumber.className = "busInnerBox";
-            lineNumber.innerHTML = "<img src='static/icons/bus.png' class='busIcon'></img>";
-            // lineNumber.innerHTML =+ `<p>${busData[a][b]["lineNo"]}</p>`
-            lineNumber.innerHTML += busData[a][b]["lineNo"];
+			lineNumber.innerHTML = "";
+			if (!(busData[a][b]["lineNo"].includes("FB"))) {
+            	lineNumber.innerHTML += "<img src='static/icons/bus.png' class='busIcon'></img>";
+			}
+             lineNumber.innerHTML += `<p class='lineNumber'>${busData[a][b]["lineNo"]}</p>`
+            //lineNumber.innerHTML += busData[a][b]["lineNo"];
             departure.appendChild(lineNumber);
 
             // route 
