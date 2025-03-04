@@ -171,7 +171,7 @@ def formatEventResponse(response: dict) -> list:
         return []
 
     global months
-    titleMaxLength = 40
+    titleMaxLength = 36
     output = []
     response = response["results"]
     for event in response:

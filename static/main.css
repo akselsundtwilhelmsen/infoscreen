@@ -1,9 +1,12 @@
 :root {
 	--busPadding: 8px;
 	--busMargin: 8px;
+	--busStopMargin: 4px;
 	--busBackgroundColor: #2b353a;
-	--eventBackgroundColor: #6d8195;
-	--eventBorderColor: #556574
+	--busPaddingVertical: 2px;
+	--eventBackDropColor: #1F202B;
+	--eventBackgroundColor: #242E40;
+	--eventBorderColor: #313F57;
 }
 
 @font-face {
@@ -26,7 +29,7 @@ html {
     line-height: 1;
     font-family: Inter, sans-serif;
     font-size: 20pt;
-	background-color: #000000;
+	background-color: var(--eventBackDropColor);
 }
 
 .outer {
@@ -49,10 +52,16 @@ html {
 
 .errorMessage {
 	margin: auto;
-
 	color: #AAAAAA;
 	font-style: italic;
 	text-align: center;
+}
+
+.invisible {
+	color: #00000000;
+	visibility: hidden;
+	/*font-size: 56pt;*/
+	/*background-color: cyan;*/
 }
 
 
@@ -67,16 +76,15 @@ html {
 	display: flex;
 	justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
-	margin-right: 5%;
-	margin-left: 5%;
+	margin-right: 8%;
+	margin-left: 8%;
 }
 
 .abakusInner {
     /*flex: 1;*/
-    margin: 4pt;
 	width: 50%;
     color: #FFFFFF;
-	background-color: var(--busBackgroundColor);
+	background-color: var(--eventBackDropColor);
 	justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
 	font-size: 18pt;
@@ -90,17 +98,20 @@ html {
     margin: 4pt;
     padding: 0pt;
     line-height: 1.3em;
+	align-items: center;
 	/*height: 4em;*/
     /*border-radius: 14px;*/
 	padding: 3px;
-	border: 1px solid var(--eventBorderColor);
+	border: 4px solid var(--eventBorderColor);
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .eventError {
 	height: 40em;
 }
 
-img {
+.eventHeader {
     justify-content: center;
     align-items: center;
     flex: 1; 
@@ -108,16 +119,30 @@ img {
     margin: 0;
     padding: 0;
 	width: 100%;
-	border: 1px solid var(--eventBorderColor);
-    /*border-radius: 14px;*/
+	/*height: 100%;*/
+	object-fit: fill;
+	align-content: center;
 }
 
 .eventInnerBox {
     min-height: 1em;
 }
 
-.eventOuterBox {
+.eventLeft {
 	width: 50%;
+	align-items: center;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+}
+
+.eventRight {
+	width: 50%;
+	align-items: center;
+	display: flex;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	margin-right: 4px;
 }
 
 #eventInfo {
@@ -164,7 +189,18 @@ img {
 
 /* date and time banner */
 
-#dateTime {
+.time {
+	font-size: 56pt;
+	align-items: center;
+	flex: 1;
+	/*line-height: 4em;*/
+}
+
+.dateTimeOuter {
+	width: 100%;
+}
+
+.dateTime {
 	justify-content: space-between;
     font-family: ubuntu mono;
 	width: 100%;
@@ -173,15 +209,13 @@ img {
 	position: relative;
 	height: 4em;
 
-	/*margin: var(--busMargin);*/
-	/*padding: var(--busPadding);*/
-}
+	width: 100%;
+	text-align: center;
+	border-radius: 8px;
+	color: white;
 
-.time {
-	font-size: 56pt;
-	align-items: center;
-	flex: 1;
-	/*line-height: 4em;*/
+	/*background-color: var(--busBackgroundColor);*/
+	/*margin: var(--busMargin);*/
 }
 
 /* bus departures */
@@ -191,16 +225,7 @@ img {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 24em;
-}
-
-#dateTime {
-	background-color: #2b353a;
-	width: 100%;
-	text-align: center;
-	border-radius: 8px;
-	color: white;
-	/*margin: 2px;*/
+	width: 26em;
 }
 
 #atb {
@@ -214,8 +239,9 @@ img {
 }
 
 .busCard {
-	flex-grow: 1;
+	/*flex-grow: 1;*/
 	font-size: 11pt;
+	width: 50%;
 }
 
 .busStop {
@@ -223,8 +249,11 @@ img {
 	/*margin: 2px;*/
 	/*padding: 3px;*/
 	border-radius: 8px;
-	/*margin: var(--busMargin);*/
+	margin: var(--busMargin);
 	/*padding: var(--busPadding);*/
+	margin-left: var(--busStopMargin);
+	margin-right: var(--busStopMargin);
+
 }
 
 .busStopHeader{
@@ -236,11 +265,10 @@ img {
     font-weight: bold;
 	height: 2em;
 	align-items: center;
-}
-
-.busStopName, .busStopDirection {
-	flex: 1;
-	/*margin: 6px;*/
+	margin-left: var(--busMargin);
+	margin-right: var(--busMargin);
+	padding-top : var(--busPaddingVertical);
+	padding-bottom : var(--busPaddingVertical);
 }
 
 .busStopName {
@@ -258,6 +286,8 @@ img {
 
 	margin-top: 3px;
 	margin-bottom: 3px;
+	margin-left: 0px;
+	margin-right: 0px;
 
     font-family: ubuntu mono;
 	border-top: 1px solid #000000;
@@ -266,11 +296,14 @@ img {
     /* background-color: #555555; */
     /* border-top: white 1pt solid; */
     /* border-top: white 1pt #ffffff; */
-	padding : 4px;
+	padding-top : var(--busPaddingVertical);
+	padding-bottom : var(--busPaddingVertical);
 }
 
 #busDepartureTime {
     /*margin-left: auto;*/
+	margin-left: var(--busMargin);
+	margin-right: var(--busMargin);
 }
 
 #busLineNumber {
@@ -285,6 +318,9 @@ img {
     border-radius: 4px;
 	height: 1.2em;
     font-weight: bold;
+	padding: 0.1em;
+	margin-left: var(--busMargin);
+	margin-right: var(--busMargin);
 }
 
 .busIcon {
@@ -310,7 +346,7 @@ img {
 	text-align: center;
 }
 
-#busRoute {
+.busRoute {
     flex: 1;
 }
 

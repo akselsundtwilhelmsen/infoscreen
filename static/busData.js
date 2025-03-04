@@ -77,6 +77,7 @@ async function busUpdateDOM(busCardId, direction) {
             const lineNumber = document.createElement("div");
             lineNumber.id = "busLineNumber";
             lineNumber.className = "busInnerBox";
+            //lineNumber.classList.add("busInnerBox", "busLineNumber");
 			lineNumber.innerHTML = "";
 			if (!(busData[a][b]["lineNo"].includes("FB"))) {
             	lineNumber.innerHTML += "<img src='static/icons/bus.png' class='busIcon'></img>";
@@ -86,8 +87,7 @@ async function busUpdateDOM(busCardId, direction) {
 
             // route 
             const route = document.createElement("div");
-            route.id = "busRoute";
-            route.className = "busInnerBox";
+            route.classList.add("busInnerBox", "busRoute");
             route.innerText = busData[a][b]["route"];
             departure.appendChild(route);
 
@@ -95,6 +95,7 @@ async function busUpdateDOM(busCardId, direction) {
             const departureTime = document.createElement("div");
             departureTime.id = "busDepartureTime";
             departureTime.className = "busInnerBox";
+            //departureTime.classList.add("busInnerBox", "busRoute");
             departureTime.innerText = busData[a][b]["departureTime"];
             departure.appendChild(departureTime);
 

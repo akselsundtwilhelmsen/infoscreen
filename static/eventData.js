@@ -49,13 +49,12 @@ async function eventUpdateDOM() {
         const eventDiv = document.createElement("div");
         eventDiv.className = "event";
 
-        let outerClass = "eventOuterBox";
         let innerClass = "eventInnerBox";
 
         // info
         const infoDiv = document.createElement("div");
         infoDiv.id = "eventInfo"
-        infoDiv.className = outerClass;
+        infoDiv.className = "eventLeft";
 
         // title
         const eventTitle = document.createElement("div");
@@ -98,8 +97,8 @@ async function eventUpdateDOM() {
         // header
         const headerDiv = document.createElement("div");
         headerDiv.className = "eventHeader";
-        headerDiv.className = outerClass;
-        headerDiv.innerHTML = `<img src=${value.cover}>`
+        headerDiv.className = "eventRight";
+        headerDiv.innerHTML = `<img class="eventHeader" src=${value.cover}>`
 
         eventDiv.appendChild(headerDiv);
 
