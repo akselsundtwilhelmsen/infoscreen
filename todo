@@ -1,7 +1,5 @@
-- forskjellige retninger
-- klokke og dato over buss
 
-- sjekk date range
+- sjekk event date range
 
 - errorhåndtering
 - sortere abakusarrangementer i bedpres og sosialt
@@ -9,5 +7,3 @@
 - sette opp raspi
 - frontend/css
 - påmeldinger
-
-- hesthagen etter 5 min (kanskje unødvendig)

@@ -1,7 +1,9 @@
+// global variables
 var bedpres = ["course", "alternative_presentation", "breakfast_talk", "company_presentation"];
 var arrangement = ["other", "social", "party", "event"]; //TODO: KiD-arrangement ??
 var maxEventCount = 10;
 
+// get event data from webserver
 async function fetchEventData() {
     return fetch('/getEventData')
         .then(response => response.text())
@@ -10,6 +12,7 @@ async function fetchEventData() {
         });
 }
 
+// populate the DOM with event data
 async function eventUpdateDOM() {
     const data = await fetchEventData();
     const arrangementCard = document.getElementById("arrangementCard");
@@ -80,6 +83,7 @@ async function eventUpdateDOM() {
         // header
         const headerDiv = document.createElement("div");
         headerDiv.className = "eventHeader";
+        headerDiv.className = outerClass;
         headerDiv.innerHTML = `<img src=${value.cover}>`
 
         eventDiv.appendChild(headerDiv);
@@ -96,5 +100,6 @@ async function eventUpdateDOM() {
     }
 }
 
+// start program
 eventUpdateDOM();
-setInterval(eventUpdateDOM, 1000); //TODO:360000/2
+setInterval(eventUpdateDOM, 1000);

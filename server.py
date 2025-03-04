@@ -122,26 +122,6 @@ def queryATB(stopNumber: int) -> dict:
     global busesPerStop
     url = "https://api.entur.io/journey-planner/v3/graphql"
     date = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-    # query = """
-    #     { stopPlace(id: "NSR:StopPlace:"""+str(stopNumber)+"""\") {
-    #         estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100, numberOfDepartures: """+str(busesPerStop)+""") {     
-    #           expectedDepartureTime
-    #           destinationDisplay {
-    #             frontText
-    #           }
-    #           serviceJourney {
-    #             journeyPattern {
-    #               line {
-    #                 id
-    #                 name
-    #                 transportMode
-    #               }
-    #             }
-    #           }
-    #         }
-    #       }
-    #     }
-    #     """
     query = """
             { quay(id: "NSR:Quay:"""+str(stopNumber)+"""\") {
                 estimatedCalls(startTime: \""""+date+"""\" timeRange: 72100,

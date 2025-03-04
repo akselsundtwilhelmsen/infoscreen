@@ -1,3 +1,9 @@
+:root {
+	--busPadding: 8px;
+	--busMargin: 8px;
+	--busBackgroundColor: #2b353a;
+}
+
 @font-face {
     font-family: 'PTSans';
     src: url('../fonts/PTSansNarrow-Regular.ttf') format('truetype');
@@ -18,8 +24,6 @@ html {
     line-height: 1;
     font-family: Inter, sans-serif;
     font-size: 20pt;
-    /* margin: 4pt; */
-    padding: 4pt;
 	background-color: #000000;
 }
 
@@ -53,13 +57,16 @@ html {
 	display: flex;
 	justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
+	margin-right: 5%;
+	margin-left: 5%;
 }
 
 .abakusInner {
     /*flex: 1;*/
     margin: 4pt;
+	width: 50%;
     color: #FFFFFF;
-	background-color: #23001E;
+	background-color: var(--busBackgroundColor);
 	justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
 	font-size: 18pt;
@@ -69,7 +76,7 @@ html {
 .event {
     display: flex;
     font-family: "PTSansBold", serif;
-	background-color: #A4A9AD;
+	background-color: #6d8195;
     margin: 4pt;
     padding: 0pt;
     line-height: 1.3em;
@@ -145,11 +152,21 @@ img {
 	justify-content: space-between;
     font-family: ubuntu mono;
 	width: 100%;
+	display: flex;
 	align-items: center;
 	position: relative;
+	height: 4em;
 
+	/*margin: var(--busMargin);*/
+	/*padding: var(--busPadding);*/
 }
 
+.time {
+	font-size: 56pt;
+	align-items: center;
+	flex: 1;
+	/*line-height: 4em;*/
+}
 
 /* bus departures */
 
@@ -167,7 +184,7 @@ img {
 	text-align: center;
 	border-radius: 8px;
 	color: white;
-	margin: 2px;
+	/*margin: 2px;*/
 }
 
 #atb {
@@ -186,10 +203,12 @@ img {
 }
 
 .busStop {
-    background-color: #2b353a;
-	margin: 2px;
-	padding: 3px;
+    background-color: var(--busBackgroundColor);
+	/*margin: 2px;*/
+	/*padding: 3px;*/
 	border-radius: 8px;
+	/*margin: var(--busMargin);*/
+	/*padding: var(--busPadding);*/
 }
 
 .busStopHeader{
@@ -205,7 +224,7 @@ img {
 
 .busStopName, .busStopDirection {
 	flex: 1;
-	margin: 6px;
+	/*margin: 6px;*/
 }
 
 .busStopName {
@@ -221,7 +240,8 @@ img {
 .busDeparture {
     display: flex;
 
-	margin: 3px;
+	margin-top: 3px;
+	margin-bottom: 3px;
 
     font-family: ubuntu mono;
 	border-top: 1px solid #000000;
@@ -230,6 +250,7 @@ img {
     /* background-color: #555555; */
     /* border-top: white 1pt solid; */
     /* border-top: white 1pt #ffffff; */
+	padding : 4px;
 }
 
 .busErrorMessage {
@@ -241,7 +262,7 @@ img {
 }
 
 #busDepartureTime {
-    margin-left: auto;
+    /*margin-left: auto;*/
 }
 
 #busLineNumber {
@@ -291,6 +312,6 @@ img {
 
 .busInnerBox {
     /* border: solid 2px black; */
-    margin: 4px;
+    /*margin: 4px;*/
 }
 
