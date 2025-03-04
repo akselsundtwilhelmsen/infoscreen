@@ -79,8 +79,7 @@ async function eventUpdateDOM() {
 
         // header
         const headerDiv = document.createElement("div");
-        headerDiv.id = "eventHeader";
-        headerDiv.className = outerClass;
+        headerDiv.className = "eventHeader";
         headerDiv.innerHTML = `<img src=${value.cover}>`
 
         eventDiv.appendChild(headerDiv);

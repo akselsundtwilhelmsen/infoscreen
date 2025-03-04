@@ -1,5 +1,5 @@
 // global variables
-var updateIntervalMS = 10000;
+var updateIntervalMS = 1000;
 var departuresPerStop = 10;
 var busStopNames = ["Gløshaugen", "Hesthagen", "Høgskoleringen"];
 var directions = ["fra sentrum", "mot sentrum"]
@@ -17,7 +17,6 @@ async function fetchBusData() {
 async function busUpdateDOM(busCardId, direction) {
     const busData = await fetchBusData();
     const busCard = document.getElementById(busCardId);
-	//console.log(busCard);
 
     // clear screen
     while (busCard.firstChild) {
@@ -38,7 +37,7 @@ async function busUpdateDOM(busCardId, direction) {
         // entire bus stop div
         const busStop = document.createElement("div");
         busStop.className = "busStop";
-        busStop.id = busStopNames[a];
+        busStop.id = busStopNames[a % 3];
 
 		// bus stop header 
         const busStopHeader = document.createElement("div");
@@ -52,7 +51,7 @@ async function busUpdateDOM(busCardId, direction) {
 
 			// bus stop direction
 			const busStopDirection = document.createElement("h4");
-			busStopDirection.className = "busStopDirection"
+			busStopDirection.classList.add("busStopDirection", "subtle");
 			busStopDirection.innerText = directions[direction];
 			busStopHeader.appendChild(busStopDirection);
 
@@ -66,7 +65,6 @@ async function busUpdateDOM(busCardId, direction) {
 
 			// error handling
 			if (busData[a].length == 0) {
-				console.log(busData[a]);
 				const errormessage = document.createElement("div");
 				errormessage.className = "busErrorMessage";
 				errormessage.innerText = "No connection :(";

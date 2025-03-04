@@ -14,7 +14,7 @@ socketio = SocketIO(app)
 
 busesPerStop = 10 # to be able to remove buses that can't be reached
 currentBusData = []
-busUpdateInterval = 10
+busUpdateInterval = 1
 
 currentEventData = []
 eventUpdateInterval = 1
@@ -166,7 +166,6 @@ def queryATB(stopNumber: int) -> dict:
     data = {'query': query}
     try:
         response = requests.post(url, json=data)
-        print(response.json())
         return response.json()
     except Exception as e:
         print(f"error: {e}")
