@@ -2,6 +2,8 @@
 	--busPadding: 8px;
 	--busMargin: 8px;
 	--busBackgroundColor: #2b353a;
+	--eventBackgroundColor: #6d8195;
+	--eventBorderColor: #556574
 }
 
 @font-face {
@@ -45,6 +47,14 @@ html {
 	color: #AAAAAA;
 }
 
+.errorMessage {
+	margin: auto;
+
+	color: #AAAAAA;
+	font-style: italic;
+	text-align: center;
+}
+
 
 /* events */
 
@@ -70,31 +80,36 @@ html {
 	justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
 	font-size: 18pt;
-	border-radius: 14px;
+	/*border-radius: 14px;*/
 }
 
 .event {
     display: flex;
     font-family: "PTSansBold", serif;
-	background-color: #6d8195;
+	background-color: var(--eventBackgroundColor);
     margin: 4pt;
     padding: 0pt;
     line-height: 1.3em;
-	height: 4em;
-    border-radius: 14px;
+	/*height: 4em;*/
+    /*border-radius: 14px;*/
 	padding: 3px;
+	border: 1px solid var(--eventBorderColor);
+}
+
+.eventError {
+	height: 40em;
 }
 
 img {
     justify-content: center;
     align-items: center;
-	height: 3em;
-     flex: 1; 
+    flex: 1; 
     background-color: white;
-	height: 4em;
     margin: 0;
     padding: 0;
-    border-radius: 14px;
+	width: 100%;
+	border: 1px solid var(--eventBorderColor);
+    /*border-radius: 14px;*/
 }
 
 .eventInnerBox {
@@ -102,6 +117,7 @@ img {
 }
 
 .eventOuterBox {
+	width: 50%;
 }
 
 #eventInfo {
@@ -251,14 +267,6 @@ img {
     /* border-top: white 1pt solid; */
     /* border-top: white 1pt #ffffff; */
 	padding : 4px;
-}
-
-.busErrorMessage {
-	margin: auto;
-
-	color: #AAAAAA;
-	font-style: italic;
-	text-align: center;
 }
 
 #busDepartureTime {

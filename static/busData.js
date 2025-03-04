@@ -66,7 +66,7 @@ async function busUpdateDOM(busCardId, direction) {
 			// error handling
 			if (busData[a].length == 0) {
 				const errormessage = document.createElement("div");
-				errormessage.className = "busErrorMessage";
+				errormessage.className = "errorMessage";
 				errormessage.innerText = "No connection :(";
 				departure.appendChild(errormessage);
 				busStop.appendChild(departure);
