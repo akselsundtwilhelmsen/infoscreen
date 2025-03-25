@@ -6,7 +6,6 @@ import threading
 import requests
 import json
 
-
 # global variables
 
 app = Flask(__name__, static_folder="/")
