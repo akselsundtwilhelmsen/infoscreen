@@ -82,7 +82,7 @@ html {
 
 .abakusInner {
     /*flex: 1;*/
-	width: 50%;
+	width: 46%;
     color: #FFFFFF;
 	background-color: var(--eventBackDropColor);
 	justify-content: center; /* Horizontal centering */
