@@ -197,6 +197,24 @@ html {
 }
 
 .dateTimeOuter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.dateTime {
+    font-family: Ubuntu Mono;
+    text-align: center;
+    color: white;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Ensure content is centered */
+    flex-grow: 1; /* Allows it to take available space */
+}
+
+.dateTimeOuter {
 	width: 100%;
 	/*background-color: var(--busBackgroundColor);*/
 }
@@ -217,6 +235,16 @@ html {
 
 	/*background-color: var(--busBackgroundColor);*/
 	/*margin: var(--busMargin);*/
+}
+
+.logo img {
+	height: 2em; /* Adjust as needed */
+	margin: 0.5em;
+}
+
+#bekkLogo {
+    mix-blend-mode: multiply; /* Alternative: use 'lighten' if needed */
+	filter: brightness(0) saturate(100%) invert(1);
 }
 
 /* bus departures */
