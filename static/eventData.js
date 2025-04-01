@@ -29,20 +29,20 @@ async function eventUpdateDOM() {
         bedpresCard.removeChild(bedpresCard.firstChild);
     }
 
-	// error handling
-	if (data.length == 0) {
-        const errorDiv1 = document.createElement("div");
-		errorDiv1.classList.add("event", "errorMessage", "eventError");
-		errorDiv1.innerText = "No connection :(";
-        arrangementCard.appendChild(errorDiv1);
-
-		const errorDiv2 = document.createElement("div");
-		errorDiv2.classList.add("event", "errorMessage", "eventError");
-		errorDiv2.innerText = "No connection :(";
-		bedpresCard.appendChild(errorDiv2);
-
-		return;
-	}
+	//// error handling
+	//if (data.length == 0) {
+	//       const errorDiv1 = document.createElement("div");
+	//	errorDiv1.classList.add("event", "errorMessage", "eventError");
+	//	errorDiv1.innerText = "No connection :(";
+	//       arrangementCard.appendChild(errorDiv1);
+	//
+	//	const errorDiv2 = document.createElement("div");
+	//	errorDiv2.classList.add("event", "errorMessage", "eventError");
+	//	errorDiv2.innerText = "No connection :(";
+	//	bedpresCard.appendChild(errorDiv2);
+	//
+	//	return;
+	//}
 
     for (var key in data) {
         var value = data[key];
