@@ -13,10 +13,10 @@ socketio = SocketIO(app)
 
 busesPerStop = 10 # to be able to remove buses that can't be reached
 currentBusData = []
-busUpdateInterval = 1
+busUpdateInterval = 15
 
 currentEventData = []
-eventUpdateInterval = 1
+eventUpdateInterval = 60
 
 months = ["jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug", "sep", "okt", "nov", "des"]
 
