@@ -243,8 +243,28 @@ html {
 }
 
 #bekkLogo {
-    mix-blend-mode: multiply; /* Alternative: use 'lighten' if needed */
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 10; /* Higher value ensures it's on top */
+}
+
+#bekkLogo {
+	   mix-blend-mode: lighten; /* Alternative: use 'lighten' if needed */
 	filter: brightness(0) saturate(100%) invert(1);
+}
+
+#bekkLogo {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10; /* Keeps it on top */
+    background-color: transparent; /* Avoid green background */
+}
+
+#bekkLogo img {
+    height: 2em;
+    width: auto;
 }
 
 /* bus departures */
