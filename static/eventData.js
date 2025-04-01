@@ -2,6 +2,7 @@
 var bedpres = ["course", "alternative_presentation", "breakfast_talk", "company_presentation"];
 var arrangement = ["other", "social", "party", "event"]; //TODO: KiD-arrangement ??
 var maxEventCount = 10;
+var updateIntervalMS = 10000
 
 // get event data from webserver
 async function fetchEventData() {
@@ -116,4 +117,4 @@ async function eventUpdateDOM() {
 
 // start program
 eventUpdateDOM();
-setInterval(eventUpdateDOM, 1000);
+setInterval(eventUpdateDOM, updateIntervalMS);
